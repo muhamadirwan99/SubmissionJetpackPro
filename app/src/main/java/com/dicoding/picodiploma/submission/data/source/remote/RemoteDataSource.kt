@@ -2,8 +2,12 @@ package com.dicoding.picodiploma.submission.data.source.remote
 
 import android.util.Log
 import com.dicoding.picodiploma.submission.api.ApiConfig
+import com.dicoding.picodiploma.submission.data.source.remote.response.movie.Movie
 import com.dicoding.picodiploma.submission.data.source.remote.response.movie.MovieDetailResponse
+import com.dicoding.picodiploma.submission.data.source.remote.response.movie.MovieResponse
+import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShow
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShowDetailResponse
+import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShowResponse
 import com.dicoding.picodiploma.submission.utils.ApiInfo.API_KEY
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,7 +30,7 @@ class RemoteDataSource {
         val client = ApiConfig.getApiService().getMovies(API_KEY)
         client.enqueue(object : Callback<MovieResponse> {
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
-                callback.onMoviesLoaded(response.body())
+                callback.onMoviesLoaded(response.body()?.results)
             }
 
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
@@ -60,7 +64,7 @@ class RemoteDataSource {
                 call: Call<TvShowResponse>,
                 response: Response<TvShowResponse>
             ) {
-                callback.onTvShowsLoaded(response.body())
+                callback.onTvShowsLoaded(response.body()?.results)
             }
 
             override fun onFailure(call: Call<TvShowResponse>, t: Throwable) {
@@ -88,7 +92,7 @@ class RemoteDataSource {
     }
 
     interface LoadMoviesCallback {
-        fun onMoviesLoaded(movies : MovieResponse?)
+        fun onMoviesLoaded(movies : List<Movie>?)
     }
 
     interface LoadDetailMovieCallback {
@@ -96,7 +100,7 @@ class RemoteDataSource {
     }
 
     interface LoadTvShowsCallback {
-        fun onTvShowsLoaded(tvShows : TvShowResponse?)
+        fun onTvShowsLoaded(tvShows : List<TvShow>?)
     }
 
     interface LoadDetailTvShowCallback {
