@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.submission.data
+package com.dicoding.picodiploma.submission.data.source.local.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

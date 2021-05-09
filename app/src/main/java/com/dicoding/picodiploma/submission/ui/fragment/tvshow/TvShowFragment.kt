@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.picodiploma.submission.data.DataEntity
+import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
 import com.dicoding.picodiploma.submission.databinding.FragmentTvShowBinding
 import com.dicoding.picodiploma.submission.ui.detail.DetailActivity
 import com.dicoding.picodiploma.submission.ui.fragment.ContentAdapter

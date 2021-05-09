@@ -1,13 +1,14 @@
 package com.dicoding.picodiploma.submission.utils
 
-import com.dicoding.picodiploma.submission.data.DataEntity
+import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
 
 object DataDummy {
 
     fun generateDummyMovies(): List<DataEntity>{
         val movies = ArrayList<DataEntity>()
 
-        movies.add(DataEntity("m1",
+        movies.add(
+            DataEntity("m1",
             "Godzilla vs. Kong",
             "Mar 24, 2021",
             "1h 53m",
@@ -16,8 +17,10 @@ object DataDummy {
             "PG-13",
             "In a time when monsters walk the Earth, humanity’s fight for its future sets Godzilla and Kong on a collision course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for the ages.",
             false,
-            "83"))
-        movies.add(DataEntity("m2",
+            "83")
+        )
+        movies.add(
+            DataEntity("m2",
             "Zack Snyder's Justice League",
             "Mar 18, 2021",
             "4h 2m",
@@ -26,8 +29,10 @@ object DataDummy {
             "R",
             "Determined to ensure Superman's ultimate sacrifice was not in vain, Bruce Wayne aligns forces with Diana Prince with plans to recruit a team of metahumans to protect the world from an approaching threat of catastrophic proportions.",
             false,
-            "85"))
-        movies.add(DataEntity("m3",
+            "85")
+        )
+        movies.add(
+            DataEntity("m3",
             "Thunder Force",
             "Apr 09, 2021",
             "1h 47m",
@@ -36,8 +41,10 @@ object DataDummy {
             "PG-13",
             "In a world where supervillains are commonplace, two estranged childhood best friends reunite after one devises a treatment that gives them powers to protect their city.",
             false,
-            "59"))
-        movies.add(DataEntity("m4",
+            "59")
+        )
+        movies.add(
+            DataEntity("m4",
             "Mortal Kombat",
             "Apr 14, 2021",
             "1h 50m",
@@ -46,8 +53,10 @@ object DataDummy {
             "R",
             "Washed-up MMA fighter Cole Young, unaware of his heritage, and hunted by Emperor Shang Tsung's best warrior, Sub-Zero, seeks out and trains with Earth's greatest champions as he prepares to stand against the enemies of Outworld in a high stakes battle for the universe.",
             false,
-            "73"))
-        movies.add(DataEntity("m5",
+            "73")
+        )
+        movies.add(
+            DataEntity("m5",
             "Chaos Walking ",
             "Apr 07, 2021",
             "1h 49m",
@@ -56,8 +65,10 @@ object DataDummy {
             "PG-13",
             "Two unlikely companions embark on a perilous adventure through the badlands of an unexplored planet as they try to escape a dangerous and disorienting reality, where all inner thoughts are seen and heard by everyone.",
             false,
-            "74"))
-        movies.add(DataEntity("m6",
+            "74")
+        )
+        movies.add(
+            DataEntity("m6",
             "Raya and the Last Dragon ",
             "Mar 03, 2021",
             "1h 47m",
@@ -66,8 +77,10 @@ object DataDummy {
             "R13+",
             "Long ago, in the fantasy world of Kumandra, humans and dragons lived together in harmony. But when an evil force threatened the land, the dragons sacrificed themselves to save humanity. Now, 500 years later, that same evil has returned and it’s up to a lone warrior, Raya, to track down the legendary last dragon to restore the fractured land and its divided people.",
             false,
-            "83"))
-        movies.add(DataEntity("m7",
+            "83")
+        )
+        movies.add(
+            DataEntity("m7",
             "Mortal Kombat Legends: Scorpion's Revenge",
             "Apr 12, 2020",
             "1h 20m",
@@ -76,8 +89,10 @@ object DataDummy {
             "R",
             "After the vicious slaughter of his family by stone-cold mercenary Sub-Zero, Hanzo Hasashi is exiled to the torturous Netherrealm. There, in exchange for his servitude to the sinister Quan Chi, he’s given a chance to avenge his family – and is resurrected as Scorpion, a lost soul bent on revenge. Back on Earthrealm, Lord Raiden gathers a team of elite warriors – Shaolin monk Liu Kang, Special Forces officer Sonya Blade and action star Johnny Cage – an unlikely band of heroes with one chance to save humanity. To do this, they must defeat Shang Tsung’s horde of Outworld gladiators and reign over the Mortal Kombat tournament.",
             false,
-            "84"))
-        movies.add(DataEntity("m8",
+            "84")
+        )
+        movies.add(
+            DataEntity("m8",
             "Monster Hunter",
             "Jan 13, 2021",
             "1h 44m",
@@ -86,8 +101,10 @@ object DataDummy {
             "PG-13",
             "A portal transports Cpt. Artemis and an elite unit of soldiers to a strange world where powerful monsters rule with deadly ferocity. Faced with relentless danger, the team encounters a mysterious hunter who may be their only hope to find a way home.",
             false,
-            "71"))
-        movies.add(DataEntity("m9",
+            "71")
+        )
+        movies.add(
+            DataEntity("m9",
             "Twist",
             "Jan 22, 2021",
             "1h 30m",
@@ -96,8 +113,10 @@ object DataDummy {
             "12",
             "A Dicken’s classic brought thrillingly up to date in the teeming heartland of modern London, where a group of street smart young hustlers plan the heist of the century for the ultimate payday.",
             false,
-            "70"))
-        movies.add(DataEntity("m10",
+            "70")
+        )
+        movies.add(
+            DataEntity("m10",
             "Tom & Jerry",
             "Mar 10, 2021",
             "1h 41m",
@@ -106,7 +125,8 @@ object DataDummy {
             "PG",
             "Tom the cat and Jerry the mouse get kicked out of their home and relocate to a fancy New York hotel, where a scrappy employee named Kayla will lose her job if she can’t evict Jerry before a high-class wedding at the hotel. Her solution? Hiring Tom to get rid of the pesky mouse.",
             false,
-            "74"))
+            "74")
+        )
 
         return movies
     }
@@ -115,7 +135,8 @@ object DataDummy {
 
         val tvShows = ArrayList<DataEntity>()
 
-        tvShows.add(DataEntity(
+        tvShows.add(
+            DataEntity(
             "tv1",
             "The Falcon and the Winter Soldier",
             "Mar 19, 2021",
@@ -125,7 +146,8 @@ object DataDummy {
             "TV-14",
             "Following the events of “Avengers: Endgame”, the Falcon, Sam Wilson and the Winter Soldier, Bucky Barnes team up in a global adventure that tests their abilities, and their patience.",
             false,
-            "79"))
+            "79")
+        )
         tvShows.add(
             DataEntity(
             "tv2",
@@ -137,7 +159,8 @@ object DataDummy {
             "TV-14",
             "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives",
             false,
-            "86"))
+            "86")
+        )
         tvShows.add(
             DataEntity(
             "tv3",
@@ -149,7 +172,8 @@ object DataDummy {
             "TV-14",
             "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
             false,
-            "77"))
+            "77")
+        )
         tvShows.add(
             DataEntity(
             "tv4",
@@ -161,7 +185,8 @@ object DataDummy {
             "TV-MA",
             "Mark Grayson is a normal teenager except for the fact that his father is the most powerful superhero on the planet. Shortly after his seventeenth birthday, Mark begins to develop powers of his own and enters into his father’s tutelage.",
             false,
-            "89"))
+            "89")
+        )
         tvShows.add(
             DataEntity(
             "tv5",
@@ -173,7 +198,8 @@ object DataDummy {
             "TV-14",
             "Set in the present, the series offers a bold, subversive take on Archie, Betty, Veronica and their friends, exploring the surreality of small-town life, the darkness and weirdness bubbling beneath Riverdale’s wholesome facade.",
             false,
-            "86"))
+            "86")
+        )
         tvShows.add(
             DataEntity(
             "tv6",
@@ -185,7 +211,8 @@ object DataDummy {
             "TV-14",
             "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
             false,
-            "82"))
+            "82")
+        )
         tvShows.add(
             DataEntity(
             "tv7",
@@ -197,7 +224,8 @@ object DataDummy {
             "TV-14",
             "Wanda Maximoff and Vision—two super-powered beings living idealized suburban lives—begin to suspect that everything is not as it seems.",
             false,
-            "84"))
+            "84")
+        )
         tvShows.add(
             DataEntity(
             "tv8",
@@ -209,7 +237,8 @@ object DataDummy {
             "TV-14",
             "Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles, where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from the underworld, the greater the threat that the worst of humanity could escape.",
             false,
-            "85"))
+            "85")
+        )
         tvShows.add(
             DataEntity(
             "tv9",
@@ -221,7 +250,8 @@ object DataDummy {
             "TV-MA",
             "Hell-bent on exacting revenge and proving he was framed for his sister's murder, Álex sets out to unearth much more than the crime's real culprit.",
             false,
-            "78"))
+            "78")
+        )
         tvShows.add(
             DataEntity(
             "tv10",
@@ -233,7 +263,8 @@ object DataDummy {
             "TV-MA",
             "Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.",
             false,
-            "81"))
+            "81")
+        )
 
         return tvShows
     }

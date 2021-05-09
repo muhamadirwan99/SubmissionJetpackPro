@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.submission.R
-import com.dicoding.picodiploma.submission.data.DataEntity
+import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
 import com.dicoding.picodiploma.submission.databinding.ActivityDetailBinding
 import com.dicoding.picodiploma.submission.ui.fragment.movies.MoviesFragment.Companion.TYPE_MOVIE
 import com.dicoding.picodiploma.submission.ui.fragment.tvshow.TvShowFragment.Companion.TYPE_TVSHOW

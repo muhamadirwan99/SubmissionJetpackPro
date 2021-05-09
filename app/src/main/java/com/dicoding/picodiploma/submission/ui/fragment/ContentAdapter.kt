@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.submission.R
-import com.dicoding.picodiploma.submission.data.DataEntity
+import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
 import com.dicoding.picodiploma.submission.databinding.ItemsContentBinding
 
 class ContentAdapter (private val callback: ContentCallback) : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() {
