@@ -15,6 +15,10 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "IMAGE_URL", "\"https://image.tmdb.org/t/p/original/\""
+        buildConfigField "String", "API_KEY", "\"738fb2cd69ed18350ab8b2b5eedf7787\""
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
