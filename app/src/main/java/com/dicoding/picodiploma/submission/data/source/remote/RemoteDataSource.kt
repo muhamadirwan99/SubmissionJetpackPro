@@ -3,9 +3,7 @@ package com.dicoding.picodiploma.submission.data.source.remote
 import android.util.Log
 import com.dicoding.picodiploma.submission.api.ApiConfig
 import com.dicoding.picodiploma.submission.data.source.remote.response.movie.MovieDetailResponse
-import com.dicoding.picodiploma.submission.data.source.remote.response.movie.MovieResponse
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShowDetailResponse
-import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShowResponse
 import com.dicoding.picodiploma.submission.utils.ApiInfo.API_KEY
 import retrofit2.Call
 import retrofit2.Callback
