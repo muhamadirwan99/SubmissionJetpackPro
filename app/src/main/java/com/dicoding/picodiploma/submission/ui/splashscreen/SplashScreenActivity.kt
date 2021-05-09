@@ -7,7 +7,7 @@ import android.os.Handler
 import com.dicoding.picodiploma.submission.R
 import com.dicoding.picodiploma.submission.ui.home.HomeActivity
 
-class SplashScreen : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

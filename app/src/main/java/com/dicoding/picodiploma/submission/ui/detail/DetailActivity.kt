@@ -35,10 +35,10 @@ class DetailActivity : AppCompatActivity() {
         val type = intent.getStringExtra(EXTRA_TYPE)
 
         if (type.equals(TYPE_MOVIE, ignoreCase = true)){
-            viewModel.setSelectedMovie(id)
+            viewModel.setSelectedMovie(id!!)
             detail = viewModel.getMovie()
         }else if (type.equals(TYPE_TVSHOW, ignoreCase = true)){
-            viewModel.setSelectedTvShow(id)
+            viewModel.setSelectedTvShow(id!!)
             detail = viewModel.getTvShow()
         }
 

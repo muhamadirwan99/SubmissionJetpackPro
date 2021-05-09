@@ -20,7 +20,7 @@
         <activity android:name="com.dicoding.picodiploma.submission.ui.home.HomeActivity">
         </activity>
         <activity
-            android:name=".ui.splashscreen.SplashScreen"
+            android:name=".ui.splashscreen.SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -12,4 +12,5 @@
     <string name="overview">Overview</string>
     <string name="credit_splash">Muhamad Irwan Ramadhan</string>
     <string name="logo">Logo TMDB</string>
+    <string name="poster">Poster</string>
 </resources>
