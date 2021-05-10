@@ -56,6 +56,7 @@ class HomeActivityTest {
         onView(withId(R.id.tv_rated)).check(matches(withText(dummyDetailMovie.status)))
         onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_rating)).check(matches(withText(dummyDetailMovie.rating.toString())))
+        onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -83,5 +84,6 @@ class HomeActivityTest {
         onView(withId(R.id.tv_rated)).check(matches(withText(dummyDetailTvShow.status)))
         onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_rating)).check(matches(withText(dummyDetailTvShow.rating.toString())))
+        onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
     }
 }
