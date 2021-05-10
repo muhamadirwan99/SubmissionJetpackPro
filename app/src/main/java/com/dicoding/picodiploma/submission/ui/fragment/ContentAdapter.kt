@@ -8,6 +8,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.submission.R
 import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
 import com.dicoding.picodiploma.submission.databinding.ItemsContentBinding
+import com.dicoding.picodiploma.submission.utils.ApiInfo.IMAGE_URL
 
 class ContentAdapter (private val callback: ContentCallback) : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() {
 
@@ -36,11 +37,11 @@ class ContentAdapter (private val callback: ContentCallback) : RecyclerView.Adap
             with(binding){
                 tvTitle.text = content.title
                 tvDate.text = content.release
-                tvRating.text = content.rating
+                tvRating.text = content.rating.toString()
                 tvOverview.text = content.overview
 
                 Glide.with(itemView.context)
-                    .load(content.poster)
+                    .load(IMAGE_URL + content.poster)
                     .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)
                         .error(R.drawable.ic_error))
                     .into(imgPoster)
@@ -51,7 +52,5 @@ class ContentAdapter (private val callback: ContentCallback) : RecyclerView.Adap
             }
         }
 
-
     }
-
 }

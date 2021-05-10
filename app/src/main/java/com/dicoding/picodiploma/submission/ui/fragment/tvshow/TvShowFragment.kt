@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
@@ -14,6 +15,7 @@ import com.dicoding.picodiploma.submission.ui.detail.DetailActivity
 import com.dicoding.picodiploma.submission.ui.fragment.ContentAdapter
 import com.dicoding.picodiploma.submission.ui.fragment.ContentCallback
 import com.dicoding.picodiploma.submission.ui.fragment.ContentViewModel
+import com.dicoding.picodiploma.submission.viemodel.ViewModelFactory
 
 
 class TvShowFragment : Fragment(), ContentCallback {
@@ -35,11 +37,20 @@ class TvShowFragment : Fragment(), ContentCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[ContentViewModel::class.java]
+
+            binding.progressBar.isVisible = true
+
+
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[ContentViewModel::class.java]
+            val tvShowAdapter = ContentAdapter(this)
             val tvShow = viewModel.getTvShows()
 
-            val tvShowAdapter = ContentAdapter(this)
-            tvShowAdapter.setContent(tvShow)
+            tvShow.observe(viewLifecycleOwner, { tvShow ->
+                binding.progressBar.isVisible = false
+                tvShowAdapter.setContent(tvShow)
+                tvShowAdapter.notifyDataSetChanged()
+            })
 
             with(binding.rvTvShow) {
                 layoutManager = LinearLayoutManager(context)

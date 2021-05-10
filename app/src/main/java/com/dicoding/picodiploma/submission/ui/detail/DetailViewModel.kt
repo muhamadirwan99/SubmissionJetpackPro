@@ -1,48 +1,28 @@
 package com.dicoding.picodiploma.submission.ui.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.picodiploma.submission.data.Repository
 import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
+import com.dicoding.picodiploma.submission.ui.fragment.movies.MoviesFragment.Companion.TYPE_MOVIE
+import com.dicoding.picodiploma.submission.ui.fragment.tvshow.TvShowFragment.Companion.TYPE_TVSHOW
 import com.dicoding.picodiploma.submission.utils.DataDummy
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel(private val repository: Repository) : ViewModel() {
 
-    private lateinit var movieId : String
-    private lateinit var tvShowId : String
+    private lateinit var detailData: LiveData<DataEntity>
 
-    fun getMovies(): List<DataEntity> = DataDummy.generateDummyMovies() as ArrayList<DataEntity>
-
-    fun getTvShows(): List<DataEntity> = DataDummy.generateDummyTvShows() as ArrayList<DataEntity>
-
-    fun setSelectedMovie(movieId : String) {
-        this.movieId = movieId
-    }
-
-    fun setSelectedTvShow(tvShowId : String) {
-        this.tvShowId = tvShowId
-    }
-
-  fun getMovie(): DataEntity {
-        lateinit var detail: DataEntity
-        val listMovie = getMovies()
-        for (movie in listMovie) {
-            if (movie.id == movieId) {
-                detail = movie
-                break
+    fun setFilm(id: String, category: String) {
+        when (category) {
+            TYPE_MOVIE -> {
+                detailData = repository.getDetailMovie(id)
+            }
+            TYPE_TVSHOW -> {
+                detailData = repository.getDetailTvShow(id)
             }
         }
-        return detail
     }
 
-    fun getTvShow(): DataEntity {
-        lateinit var detail: DataEntity
-        val listTvShow = getTvShows()
-        for (tvShow in listTvShow) {
-            if (tvShow.id == tvShowId) {
-                detail = tvShow
-                break
-            }
-        }
-        return detail
-    }
+    fun getDataDetail() = detailData
 
 }

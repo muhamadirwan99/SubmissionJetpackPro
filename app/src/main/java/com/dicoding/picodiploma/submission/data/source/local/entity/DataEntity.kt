@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DataEntity(
-    var id: Int,
+    var id: String,
     var title: String,
     var release: String,
     var duration: Int?,

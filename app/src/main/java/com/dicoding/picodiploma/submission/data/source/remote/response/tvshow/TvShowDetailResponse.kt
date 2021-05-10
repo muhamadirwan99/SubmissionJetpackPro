@@ -1,5 +1,6 @@
 package com.dicoding.picodiploma.submission.data.source.remote.response.tvshow
 
+import com.dicoding.picodiploma.submission.data.source.remote.response.movie.GenresItem
 import com.google.gson.annotations.SerializedName
 
 data class TvShowDetailResponse(
@@ -20,7 +21,7 @@ data class TvShowDetailResponse(
 	val posterPath: String,
 
 	@field:SerializedName("genres")
-	val genres: List<GenresItem>,
+	val genres: List<Genre>,
 
 	@field:SerializedName("status")
 	val status: String,
@@ -32,11 +33,7 @@ data class TvShowDetailResponse(
 	val voteAverage: Double
 )
 
-data class GenresItem(
-
+data class Genre(
 	@field:SerializedName("name")
 	val name: String,
-
-	@field:SerializedName("id")
-	val id: Int
 )

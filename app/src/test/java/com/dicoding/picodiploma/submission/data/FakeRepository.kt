@@ -10,16 +10,7 @@ import com.dicoding.picodiploma.submission.data.source.remote.response.movie.Mov
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShow
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShowDetailResponse
 
-class Repository private constructor(private val remoteDataSource: RemoteDataSource): DataSource{
-
-    companion object {
-        @Volatile
-        private var instance: Repository? = null
-        fun getInstance(remoteData: RemoteDataSource): Repository =
-            instance ?: synchronized(this) {
-                instance ?: Repository(remoteData)
-            }
-    }
+class FakeRepository (private val remoteDataSource: RemoteDataSource): DataSource{
 
     override fun getMovies(): LiveData<List<DataEntity>> {
         val movieResult = MutableLiveData<List<DataEntity>>()

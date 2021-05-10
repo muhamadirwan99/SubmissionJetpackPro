@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
@@ -14,6 +15,7 @@ import com.dicoding.picodiploma.submission.ui.detail.DetailActivity
 import com.dicoding.picodiploma.submission.ui.fragment.ContentAdapter
 import com.dicoding.picodiploma.submission.ui.fragment.ContentCallback
 import com.dicoding.picodiploma.submission.ui.fragment.ContentViewModel
+import com.dicoding.picodiploma.submission.viemodel.ViewModelFactory
 
 
 class MoviesFragment : Fragment(), ContentCallback {
@@ -36,11 +38,19 @@ class MoviesFragment : Fragment(), ContentCallback {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[ContentViewModel::class.java]
+
+            binding.progressBar.isVisible = true
+
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[ContentViewModel::class.java]
+            val movieAdapter = ContentAdapter(this)
             val movie = viewModel.getMovies()
 
-            val movieAdapter = ContentAdapter(this)
-            movieAdapter.setContent(movie)
+            movie.observe(viewLifecycleOwner, { movie ->
+                binding.progressBar.isVisible = false
+                movieAdapter.setContent(movie)
+                movieAdapter.notifyDataSetChanged()
+            })
 
             with(binding.rvMovie) {
                 layoutManager = LinearLayoutManager(context)

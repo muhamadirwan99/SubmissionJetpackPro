@@ -7,10 +7,11 @@
     <string name="release_date">Release Date</string>
     <string name="duration">Duration</string>
     <string name="genre">Genre</string>
-    <string name="rated">Rated</string>
+    <string name="status">Status</string>
     <string name="rating">Rating</string>
     <string name="overview">Overview</string>
     <string name="credit_splash">Muhamad Irwan Ramadhan</string>
     <string name="logo">Logo TMDB</string>
     <string name="poster">Poster</string>
+    <string name="minutes">%d Minutes</string>
 </resources>
