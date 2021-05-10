@@ -9,6 +9,7 @@ import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.Tv
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShowDetailResponse
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShowResponse
 import com.dicoding.picodiploma.submission.utils.ApiInfo.API_KEY
+import com.dicoding.picodiploma.submission.utils.EspressoIdlingResource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,14 +28,17 @@ class RemoteDataSource {
     }
 
     fun getMovies(callback: LoadMoviesCallback) {
+        EspressoIdlingResource.increment()
         val client = ApiConfig.getApiService().getMovies(API_KEY)
         client.enqueue(object : Callback<MovieResponse> {
             override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
                 callback.onMoviesLoaded(response.body()?.results)
+                EspressoIdlingResource.decrement()
             }
 
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
                 Log.e(TAG, "getMovies onFailure: ${t.message.toString()}")
+                EspressoIdlingResource.decrement()
             }
 
         })
@@ -42,6 +46,7 @@ class RemoteDataSource {
     }
 
     fun getDetailMovie(callback: LoadDetailMovieCallback, movieId: String){
+        EspressoIdlingResource.increment()
         val client = ApiConfig.getApiService().getMovieDetail(movieId, API_KEY)
         client.enqueue(object : Callback<MovieDetailResponse>{
             override fun onResponse(
@@ -49,15 +54,18 @@ class RemoteDataSource {
                 response: Response<MovieDetailResponse>
             ) {
                 callback.onDetailMovieLoaded(response.body())
+                EspressoIdlingResource.decrement()
             }
 
             override fun onFailure(call: Call<MovieDetailResponse>, t: Throwable) {
                 Log.e(TAG, "getDetailMovie onFailure: ${t.message.toString()}")
+                EspressoIdlingResource.decrement()
             }
         })
     }
 
     fun getTvShows(callback: LoadTvShowsCallback) {
+        EspressoIdlingResource.increment()
         val client = ApiConfig.getApiService().getTvShows(API_KEY)
         client.enqueue(object : Callback<TvShowResponse>{
             override fun onResponse(
@@ -65,16 +73,19 @@ class RemoteDataSource {
                 response: Response<TvShowResponse>
             ) {
                 callback.onTvShowsLoaded(response.body()?.results)
+                EspressoIdlingResource.decrement()
             }
 
             override fun onFailure(call: Call<TvShowResponse>, t: Throwable) {
                 Log.e(TAG, "getTvShows onFailure: ${t.message.toString()}")
+                EspressoIdlingResource.decrement()
             }
 
         })
     }
 
     fun getDetailTvShow(callback: LoadDetailTvShowCallback, tvId: String){
+        EspressoIdlingResource.increment()
         val client = ApiConfig.getApiService().getTvShowDetail(tvId, API_KEY)
         client.enqueue(object : Callback<TvShowDetailResponse>{
             override fun onResponse(
@@ -82,10 +93,12 @@ class RemoteDataSource {
                 response: Response<TvShowDetailResponse>
             ) {
                 callback.onDetailTvShowLoaded(response.body())
+                EspressoIdlingResource.decrement()
             }
 
             override fun onFailure(call: Call<TvShowDetailResponse>, t: Throwable) {
                 Log.e(TAG, "getDetailTvShow onFailure: ${t.message.toString()}")
+                EspressoIdlingResource.decrement()
             }
 
         })

@@ -2,7 +2,6 @@ package com.dicoding.picodiploma.submission.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -10,8 +9,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.submission.R
 import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
 import com.dicoding.picodiploma.submission.databinding.ActivityDetailBinding
-import com.dicoding.picodiploma.submission.ui.fragment.movies.MoviesFragment.Companion.TYPE_MOVIE
-import com.dicoding.picodiploma.submission.ui.fragment.tvshow.TvShowFragment.Companion.TYPE_TVSHOW
 import com.dicoding.picodiploma.submission.utils.ApiInfo.IMAGE_URL
 import com.dicoding.picodiploma.submission.viemodel.ViewModelFactory
 
