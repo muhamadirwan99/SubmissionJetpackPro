@@ -2,15 +2,24 @@ package com.dicoding.picodiploma.submission.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.submission.R
-import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
+import com.dicoding.picodiploma.submission.data.source.local.entity.MovieEntity
+import com.dicoding.picodiploma.submission.data.source.local.entity.TvShowEntity
 import com.dicoding.picodiploma.submission.databinding.ActivityDetailBinding
+import com.dicoding.picodiploma.submission.ui.fragment.main.movies.MoviesFragment.Companion.TYPE_MOVIE
+import com.dicoding.picodiploma.submission.ui.fragment.main.tvshow.TvShowFragment.Companion.TYPE_TVSHOW
 import com.dicoding.picodiploma.submission.utils.ApiInfo.IMAGE_URL
 import com.dicoding.picodiploma.submission.viemodel.ViewModelFactory
+import com.dicoding.picodiploma.submission.vo.Status
 
 class DetailActivity : AppCompatActivity() {
 
@@ -20,6 +29,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailBinding
+    private lateinit var viewModel: DetailViewModel
+
+    private var type: String? = null
+    private var menu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,26 +41,99 @@ class DetailActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        binding.progressBar.isVisible = true
+        showProgressBar(true)
 
         val factory = ViewModelFactory.getInstance(this)
-        val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
+        viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         val id = intent.getStringExtra(EXTRA_DATA)
-        val type = intent.getStringExtra(EXTRA_TYPE)
-
-
+        type = intent.getStringExtra(EXTRA_TYPE)
 
         if (id != null && type != null){
-            viewModel.setFilm(id, type)
-            viewModel.getDataDetail().observe(this, { detail ->
-                populateDataDetail(detail)
+            viewModel.setFilm(id, type.toString())
+            setupState()
+            if (type == TYPE_MOVIE) {
+                viewModel.getDataDetailMovie().observe(this, { detail ->
+                    when (detail.status) {
+                        Status.LOADING -> showProgressBar(true)
+                        Status.SUCCESS -> {
+                            if (detail.data != null) {
+                                showProgressBar(false)
+                                populateDataDetailMovie(detail.data)
+                            }
+                        }
+                        Status.ERROR -> {
+                            showProgressBar(false)
+                            Toast.makeText(applicationContext, "Ada yang salah", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                })
+            }else if (type == TYPE_TVSHOW){
+                viewModel.getDataDetailTvShow().observe(this, { detail ->
+                    when(detail.status) {
+                        Status.LOADING -> showProgressBar(true)
+                        Status.SUCCESS -> {
+                            if (detail.data != null){
+                                showProgressBar(false)
+                                populateDataDetailTvShow(detail.data)
+                            }
+                        }
+                        Status.ERROR -> {
+                            showProgressBar(false)
+                            Toast.makeText(applicationContext, "Ada yang salah", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
+            }
+        }
+
+    }
+
+    private fun setupState() {
+        if (type == TYPE_MOVIE){
+            viewModel.getDataDetailMovie().observe(this, { data ->
+                when(data.status) {
+                    Status.LOADING -> showProgressBar(true)
+                    Status.SUCCESS -> {
+                        if (data.data != null) {
+                            showProgressBar(false)
+                            val state = data.data.favorite
+                            setFavoriteState(state)
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgressBar(false)
+                        Toast.makeText(applicationContext, "Ada yang salah", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+        }else if (type == TYPE_TVSHOW){
+            viewModel.getDataDetailTvShow().observe(this, { data ->
+                when(data.status) {
+                    Status.LOADING -> showProgressBar(true)
+                    Status.SUCCESS -> {
+                        if (data.data != null) {
+                            showProgressBar(false)
+                            val state = data.data.favorite
+                            setFavoriteState(state)
+                        }
+                    }
+                    Status.ERROR -> {
+                        showProgressBar(false)
+                        Toast.makeText(applicationContext, "Ada yang salah", Toast.LENGTH_SHORT).show()
+                    }
+                }
             })
         }
 
     }
 
-    private fun populateDataDetail(detail: DataEntity){
+    private fun showProgressBar(state: Boolean) {
+        binding.progressBar.isVisible = state
+    }
+
+    private fun populateDataDetailMovie(detail: MovieEntity){
         val genre = detail.genre.toString().replace("[", "").replace("]", "")
         val duration = resources.getString(R.string.minutes, detail.duration)
 
@@ -68,7 +154,65 @@ class DetailActivity : AppCompatActivity() {
                 .into(imgPoster)
         }
 
-        binding.progressBar.isVisible = false
+        showProgressBar(false)
 
     }
+
+    private fun populateDataDetailTvShow(detail: TvShowEntity){
+        val genre = detail.genre.toString().replace("[", "").replace("]", "")
+        val duration = resources.getString(R.string.minutes, detail.duration)
+
+        with(binding){
+            tvTitle.text = detail.title
+            tvRelease.text = detail.release
+            tvDuration.text = duration
+            tvGenre.text = genre
+            tvRated.text = detail.status
+            tvRating.text = detail.rating.toString()
+            tvOverview.text = detail.overview
+
+            Glide.with(this@DetailActivity)
+                .load(IMAGE_URL + detail.poster)
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.ic_loading)
+                        .error(R.drawable.ic_error))
+                .into(imgPoster)
+        }
+
+        showProgressBar(false)
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_detail, menu)
+        this.menu = menu
+
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (type == TYPE_MOVIE){
+            if (item.itemId == R.id.action_favorite) {
+                viewModel.setFavoriteMovie()
+                return true
+            }
+        }else if (type == TYPE_TVSHOW){
+            if (item.itemId == R.id.action_favorite) {
+                viewModel.setFavoriteTvShow()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setFavoriteState(state: Boolean) {
+        if (menu == null) return
+        val menuItem = menu?.findItem(R.id.action_favorite)
+        if (state) {
+            menuItem?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite)
+            Toast.makeText(applicationContext, "Successfully added to favorite", Toast.LENGTH_SHORT).show()
+        } else {
+            menuItem?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border)
+        }
+    }
+
 }

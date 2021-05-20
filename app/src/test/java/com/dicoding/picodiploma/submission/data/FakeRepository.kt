@@ -2,11 +2,9 @@ package com.dicoding.picodiploma.submission.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
 import com.dicoding.picodiploma.submission.data.source.remote.RemoteDataSource
 import com.dicoding.picodiploma.submission.data.source.remote.response.movie.Movie
 import com.dicoding.picodiploma.submission.data.source.remote.response.movie.MovieDetailResponse
-import com.dicoding.picodiploma.submission.data.source.remote.response.movie.MovieResponse
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShow
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShowDetailResponse
 

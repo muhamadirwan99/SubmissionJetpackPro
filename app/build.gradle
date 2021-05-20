@@ -2,11 +2,13 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+
 }
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.dicoding.picodiploma.submission"
@@ -54,7 +56,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.codesgood:justifiedtextview:1.1.0'
-
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
     //testing
     testImplementation "junit:junit:$junitVersion"
@@ -79,4 +81,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+
+    //database
+    implementation "androidx.room:room-runtime:$roomRuntimeVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 }

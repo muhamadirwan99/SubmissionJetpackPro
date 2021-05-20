@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.dicoding.picodiploma.submission.data.Repository
-import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
+import com.dicoding.picodiploma.submission.ui.fragment.main.FragmentViewModel
 import com.dicoding.picodiploma.submission.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
@@ -20,7 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class ContentViewModelTest {
 
-    private lateinit var viewModel: ContentViewModel
+    private lateinit var viewModel: FragmentViewModel
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -33,7 +33,7 @@ class ContentViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel= ContentViewModel(repository)
+        viewModel= FragmentViewModel(repository)
     }
 
     @Test

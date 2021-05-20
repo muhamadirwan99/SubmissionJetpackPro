@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.submission.ui.home
+package com.dicoding.picodiploma.submission.ui.fragment.favorite
 
 import android.content.Context
 import androidx.annotation.StringRes
@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.dicoding.picodiploma.submission.R
-import com.dicoding.picodiploma.submission.ui.fragment.main.movies.MoviesFragment
-import com.dicoding.picodiploma.submission.ui.fragment.main.tvshow.TvShowFragment
+import com.dicoding.picodiploma.submission.ui.fragment.favorite.movies.FavoriteMovie
+import com.dicoding.picodiploma.submission.ui.fragment.favorite.tvshows.FavoriteTvShow
 
-class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class SectionsPagerAdapterFavorite (private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     companion object {
         @StringRes
@@ -18,8 +18,8 @@ class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
 
     override fun getItem(position: Int): Fragment =
         when (position) {
-            0 -> MoviesFragment()
-            1 -> TvShowFragment()
+            0 -> FavoriteMovie()
+            1 -> FavoriteTvShow()
             else -> Fragment()
         }
 

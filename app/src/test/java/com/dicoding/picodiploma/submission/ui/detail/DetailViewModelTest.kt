@@ -4,9 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.dicoding.picodiploma.submission.data.Repository
-import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
-import com.dicoding.picodiploma.submission.ui.fragment.movies.MoviesFragment.Companion.TYPE_MOVIE
-import com.dicoding.picodiploma.submission.ui.fragment.tvshow.TvShowFragment.Companion.TYPE_TVSHOW
+import com.dicoding.picodiploma.submission.ui.fragment.main.movies.MoviesFragment.Companion.TYPE_MOVIE
+import com.dicoding.picodiploma.submission.ui.fragment.main.tvshow.TvShowFragment.Companion.TYPE_TVSHOW
 import com.dicoding.picodiploma.submission.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test

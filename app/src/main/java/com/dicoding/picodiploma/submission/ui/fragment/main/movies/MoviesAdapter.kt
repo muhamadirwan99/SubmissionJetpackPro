@@ -1,23 +1,35 @@
-package com.dicoding.picodiploma.submission.ui.fragment
+package com.dicoding.picodiploma.submission.ui.fragment.main.movies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.picodiploma.submission.R
-import com.dicoding.picodiploma.submission.data.source.local.entity.DataEntity
+import com.dicoding.picodiploma.submission.data.source.local.entity.MovieEntity
 import com.dicoding.picodiploma.submission.databinding.ItemsContentBinding
 import com.dicoding.picodiploma.submission.utils.ApiInfo.IMAGE_URL
 
-class ContentAdapter (private val callback: ContentCallback) : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() {
+class MoviesAdapter: PagedListAdapter<MovieEntity, MoviesAdapter.ContentViewHolder>(DIFF_CALLBACK) {
 
-    private val listContent = ArrayList<DataEntity>()
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MovieEntity>() {
+            override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    fun setContent(content: List<DataEntity>?){
-        if (content == null) return
-        listContent.clear()
-        listContent.addAll(content)
+            override fun areContentsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
@@ -26,14 +38,14 @@ class ContentAdapter (private val callback: ContentCallback) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: ContentViewHolder, position: Int) {
-        val content = listContent[position]
-        holder.bind(content)
+        val content = getItem(position)
+        if (content != null){
+            holder.bind(content)
+        }
     }
 
-    override fun getItemCount(): Int = listContent.size
-
     inner class ContentViewHolder (private val binding: ItemsContentBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(content: DataEntity){
+        fun bind(content: MovieEntity){
             with(binding){
                 tvTitle.text = content.title
                 tvDate.text = content.release
@@ -47,10 +59,13 @@ class ContentAdapter (private val callback: ContentCallback) : RecyclerView.Adap
                     .into(imgPoster)
 
                 itemView.setOnClickListener {
-                    callback.onItemClicked(content)
+                    onItemClickCallback.onItemClicked(content.id)
                 }
             }
         }
 
+    }
+    interface OnItemClickCallback {
+        fun onItemClicked(id: String)
     }
 }
