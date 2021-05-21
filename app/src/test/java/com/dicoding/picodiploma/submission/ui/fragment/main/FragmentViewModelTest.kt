@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.submission.ui.fragment
+package com.dicoding.picodiploma.submission.ui.fragment.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
