@@ -5,7 +5,6 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -73,7 +72,7 @@ class HomeActivityTest {
     fun loadFavoriteMovie() {
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.action_favorite)).perform(click())
-        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(isRoot()).perform(pressBack())
         openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
         onView(withText("Favorite")).perform(click())
         onView(withId(R.id.rv_fav_movies)).check(matches(isDisplayed()))
@@ -85,7 +84,7 @@ class HomeActivityTest {
         onView(withText(R.string.tv_show)).perform(click())
         onView(withId(R.id.rv_tv_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.action_favorite)).perform(click())
-        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(isRoot()).perform(pressBack())
         openActionBarOverflowOrOptionsMenu(getInstrumentation().targetContext)
         onView(withText("Favorite")).perform(click())
         onView(withText(R.string.tv_show)).perform(click())

@@ -2,7 +2,6 @@ package com.dicoding.picodiploma.submission.ui.fragment.favorite
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dicoding.picodiploma.submission.R
 import com.dicoding.picodiploma.submission.databinding.ActivityFavoriteBinding
 
 class FavoriteActivity : AppCompatActivity() {

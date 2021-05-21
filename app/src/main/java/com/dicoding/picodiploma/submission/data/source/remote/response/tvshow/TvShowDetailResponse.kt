@@ -1,6 +1,5 @@
 package com.dicoding.picodiploma.submission.data.source.remote.response.tvshow
 
-import com.dicoding.picodiploma.submission.data.source.remote.response.movie.GenresItem
 import com.google.gson.annotations.SerializedName
 
 data class TvShowDetailResponse(

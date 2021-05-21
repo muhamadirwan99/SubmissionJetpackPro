@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -134,7 +133,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun populateDataDetailMovie(detail: MovieEntity){
-        val genre = detail.genre.toString().replace("[", "").replace("]", "")
+        val genre = detail.genre.replace("[", "").replace("]", "")
         val duration = resources.getString(R.string.minutes, detail.duration)
 
         with(binding){
@@ -159,7 +158,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun populateDataDetailTvShow(detail: TvShowEntity){
-        val genre = detail.genre.toString().replace("[", "").replace("]", "")
+        val genre = detail.genre.replace("[", "").replace("]", "")
         val duration = resources.getString(R.string.minutes, detail.duration)
 
         with(binding){

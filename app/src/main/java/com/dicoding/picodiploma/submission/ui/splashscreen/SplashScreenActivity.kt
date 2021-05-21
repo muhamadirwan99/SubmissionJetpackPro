@@ -16,11 +16,10 @@ class SplashScreenActivity : AppCompatActivity() {
 
         val splashTimeOut:Long = 3000
 
-        Handler().postDelayed({
+        Handler(mainLooper).postDelayed({
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }, splashTimeOut)
-
 
     }
 }

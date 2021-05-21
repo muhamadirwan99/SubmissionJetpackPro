@@ -1,6 +1,5 @@
 package com.dicoding.picodiploma.submission.utils
 
-import androidx.lifecycle.ViewModelProvider
 import com.dicoding.picodiploma.submission.data.source.local.entity.MovieEntity
 import com.dicoding.picodiploma.submission.data.source.local.entity.TvShowEntity
 import com.dicoding.picodiploma.submission.data.source.remote.response.movie.GenresItem
@@ -9,9 +8,6 @@ import com.dicoding.picodiploma.submission.data.source.remote.response.movie.Mov
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.Genre
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShow
 import com.dicoding.picodiploma.submission.data.source.remote.response.tvshow.TvShowDetailResponse
-import com.dicoding.picodiploma.submission.ui.fragment.favorite.movies.FavoriteMovieViewModel
-import com.dicoding.picodiploma.submission.ui.fragment.main.FragmentViewModel
-import com.dicoding.picodiploma.submission.viemodel.ViewModelFactory
 
 object DataDummy {
 
