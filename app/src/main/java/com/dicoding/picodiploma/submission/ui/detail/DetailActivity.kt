@@ -209,7 +209,6 @@ class DetailActivity : AppCompatActivity() {
         val menuItem = menu?.findItem(R.id.action_favorite)
         if (state) {
             menuItem?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite)
-            Toast.makeText(applicationContext, "Successfully added to favorite", Toast.LENGTH_SHORT).show()
         } else {
             menuItem?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border)
         }

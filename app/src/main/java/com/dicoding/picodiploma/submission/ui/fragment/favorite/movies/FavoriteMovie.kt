@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.picodiploma.submission.R
-import com.dicoding.picodiploma.submission.databinding.FragmentMoviesBinding
+import com.dicoding.picodiploma.submission.databinding.FragmentFavoriteMovieBinding
 import com.dicoding.picodiploma.submission.ui.detail.DetailActivity
 import com.dicoding.picodiploma.submission.ui.fragment.main.movies.MoviesFragment
 import com.dicoding.picodiploma.submission.viemodel.ViewModelFactory
@@ -19,7 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class FavoriteMovie : Fragment(), FavoriteMovieAdapter.OnItemClickCallback {
 
-    private var binding: FragmentMoviesBinding? = null
+    private var binding: FragmentFavoriteMovieBinding? = null
 
     private lateinit var viewModel: FavoriteMovieViewModel
     private lateinit var adapter: FavoriteMovieAdapter
@@ -29,7 +29,7 @@ class FavoriteMovie : Fragment(), FavoriteMovieAdapter.OnItemClickCallback {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentMoviesBinding.inflate(layoutInflater, container, false)
+        binding = FragmentFavoriteMovieBinding.inflate(layoutInflater, container, false)
         return binding?.root
     }
 
@@ -45,7 +45,7 @@ class FavoriteMovie : Fragment(), FavoriteMovieAdapter.OnItemClickCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        itemTouchHelper.attachToRecyclerView(binding?.rvMovie)
+        itemTouchHelper.attachToRecyclerView(binding?.rvFavMovies)
 
         if (activity != null){
             val factory = ViewModelFactory.getInstance(requireActivity())
@@ -60,7 +60,7 @@ class FavoriteMovie : Fragment(), FavoriteMovieAdapter.OnItemClickCallback {
                 }
             })
 
-            with(binding?.rvMovie) {
+            with(binding?.rvFavMovies) {
                 this?.layoutManager = LinearLayoutManager(context)
                 this?.setHasFixedSize(true)
                 this?.adapter = adapter
